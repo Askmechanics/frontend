@@ -1,17 +1,16 @@
-import axios from 'axios';
-import {ENDPOINT} from '../global/endPoint';
+import axios from "axios";
+import { ENDPOINT } from "../global/endPoint";
 
 export const uploadProfilePic = async (imageData: any, fixitId: string) => {
-  const params = JSON.stringify(imageData);
   const response = await axios.post(
     `${ENDPOINT}/uploadfixitImage/${fixitId}`,
-    params,
+    imageData,
     {
       headers: {
-        accept: '*/*',
-        'Content-Type': 'multipart/form-data',
+        accept: "*/*",
+        "Content-Type": "multipart/form-data",
       },
-    },
+    }
   );
   return response;
 };
@@ -21,7 +20,7 @@ export const editProfile = async (
   userName: string,
   fixitId: string,
   workShopAddress: string,
-  specialCategory: string,
+  specialCategory: any[]
 ) => {
   const data = JSON.stringify({
     email: email,
@@ -35,9 +34,9 @@ export const editProfile = async (
     data,
     {
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
-    },
+    }
   );
   return response;
 };
